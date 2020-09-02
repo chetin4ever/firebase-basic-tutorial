@@ -25,7 +25,30 @@ function renderCafe(doc) {
 }
 // collection is used for geeting database name and and for retriving data (.get) method is used
 //getting data
+// db.collection("cafes")
+//   .get()
+//   .then((snapshot) => {
+//     snapshot.docs.forEach((doc) => {
+//       //console.log(doc.data());
+//       renderCafe(doc);
+//     });
+//   });
+
+//quering data
+//where("city" '>' "m") ||  .where("city", "==", "jalgaon") || .where("city", "<", "j")
+// db.collection("cafes")
+//   .where("city", ">", "p")
+//   .get()
+//   .then((snapshot) => {
+//     snapshot.docs.forEach((doc) => {
+//       //console.log(doc.data());
+//       renderCafe(doc);
+//     });
+//   });
+//ordering data
 db.collection("cafes")
+  .where("city", "==", "mumbai")
+  .orderBy("name")
   .get()
   .then((snapshot) => {
     snapshot.docs.forEach((doc) => {
@@ -33,6 +56,7 @@ db.collection("cafes")
       renderCafe(doc);
     });
   });
+
 //saving data to firebase
 form.addEventListener("submit", (e) => {
   e.preventDefault();
